@@ -1,6 +1,5 @@
 import { Draggable } from "@hello-pangea/dnd";
 import { useState } from "react";
-import { createPortal } from "react-dom";
 import API from "../services/api";
 import CardModal from "./CardModal";
 import "../styles/card.css";
@@ -22,19 +21,19 @@ export default function Card({ card, listId, index, onCardUpdated }) {
 
     return (
         <>
-            <Draggable draggableId={`card-${listId}-${card.id}`} index={index}>
+            <Draggable draggableId={`card-${card.id}`} index={index}>
                 {(provided, snapshot) => (
-                    (() => {
-                        const cardNode = (
-                            <div
-                        className={`card ${isCompleted ? "completed" : ""} ${snapshot.isDragging ? "dragging" : ""}`}
-                        onClick={() => setOpen(true)}
+                    <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className={`card ${isCompleted ? "completed" : ""} ${
+                            snapshot.isDragging ? "dragging" : ""
+                        }`}
                         style={{
                             ...provided.draggableProps.style,
-                            zIndex: snapshot.isDragging ? 1000 : "auto",
                         }}
+                        onClick={() => setOpen(true)}
                     >
                         <input
                             type="checkbox"
@@ -43,38 +42,40 @@ export default function Card({ card, listId, index, onCardUpdated }) {
                             onClick={(e) => e.stopPropagation()}
                         />
 
-                        <div {...provided.dragHandleProps}>
-                            <div className="labels">
-                                {labels.map((label, i) => (
-                                    <span
-                                        key={`${card.id}-${label}-${i}`}
-                                        style={{ background: colors[i] }}
-                                        className="label"
-                                    >
-                                        {label}
-                                    </span>
-                                ))}
-                            </div>
-
-                            <h4>{card.title}</h4>
-
-                            {card.description && <p className="desc">{card.description}</p>}
-
-                            {card.due_date && (
-                                <div className={`deadline ${isLate ? "late" : ""}`}>
-                                    {new Date(card.due_date).toLocaleDateString()}
-                                </div>
-                            )}
+                        <div className="labels">
+                            {labels.map((label, i) => (
+                                <span
+                                    key={`${card.id}-${label}-${i}`}
+                                    style={{ background: colors[i] }}
+                                    className="label"
+                                >
+                                    {label}
+                                </span>
+                            ))}
                         </div>
-                    </div>
-                        );
 
-                        return snapshot.isDragging ? createPortal(cardNode, document.body) : cardNode;
-                    })()
+                        <h4>{card.title}</h4>
+
+                        {card.description && (
+                            <p className="desc">{card.description}</p>
+                        )}
+
+                        {card.due_date && (
+                            <div className={`deadline ${isLate ? "late" : ""}`}>
+                                {new Date(card.due_date).toLocaleDateString()}
+                            </div>
+                        )}
+                    </div>
                 )}
             </Draggable>
 
-            {open && <CardModal card={card} close={() => setOpen(false)} onCardUpdated={onCardUpdated} />}
+            {open && (
+                <CardModal
+                    card={card}
+                    close={() => setOpen(false)}
+                    onCardUpdated={onCardUpdated}
+                />
+            )}
         </>
     );
 }
