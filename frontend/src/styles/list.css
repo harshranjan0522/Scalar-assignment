@@ -1,0 +1,91 @@
+.list {
+    width: 500px;
+    min-width: 500px;
+    max-width: 500px;
+    padding: 12px;
+
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: calc(100vh - 120px);
+    overflow: hidden;
+}
+
+.list:hover {
+    transform: translateY(-2px);
+}
+
+.list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.list-header h3 {
+    margin: 0;
+}
+
+.list-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.rename-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 8px;
+    font-size: 14px;
+}
+
+.rename-list-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.delete-list-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.list-cards {
+    max-height: calc(100vh - 280px);
+    overflow-y: auto;
+    padding-right: 2px;
+}
+
+.list-cards::-webkit-scrollbar {
+    display: none;
+}
+
+.list-cards {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+@media (max-width: 768px) {
+    .list {
+        width: calc(100vw - 32px);
+        min-width: calc(100vw - 32px);
+        max-width: calc(100vw - 32px);
+    }
+
+    .list-cards {
+        max-height: calc(100vh - 300px);
+    }
+}

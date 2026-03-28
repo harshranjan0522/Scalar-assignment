@@ -1,0 +1,136 @@
+import { Droppable, Draggable } from "@hello-pangea/dnd";
+import Card from "./Card";
+import API from "../services/api";
+import { useState } from "react";
+import "../styles/list.css";
+
+
+export default function List({ list, index, onCardUpdated, onCardCreated, onDeleteList, onRenameList }) {
+    const [title, setTitle] = useState("");
+    const cards = Array.isArray(list.cards) ? list.cards : [];
+    const [isRenaming, setIsRenaming] = useState(false);
+    const [renameTitle, setRenameTitle] = useState(list.title || "");
+
+    const addCard = async () => {
+        if (!title.trim()) return;
+        const res = await API.post("/cards", { title: title.trim(), list_id: list.id });
+        onCardCreated?.(list.id, res.data.card);
+        setTitle("");
+    };
+
+    const saveRename = async () => {
+        const nextTitle = renameTitle.trim();
+        if (!nextTitle) return;
+
+        try {
+            await API.put(`/lists/${list.id}`, { title: nextTitle });
+        } catch (error) {
+            await API.post(`/lists/update/${list.id}`, { title: nextTitle });
+        }
+
+        onRenameList?.(list.id, nextTitle);
+        setIsRenaming(false);
+    };
+
+return (
+    <Draggable draggableId={`list-${list.id}`} index={index}>
+    {(provided) => (
+        <div
+            className="list"
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+        >
+        <div className="list-header">
+            {isRenaming ? (
+                <input
+                    className="rename-input"
+                    value={renameTitle}
+                    onChange={(e) => setRenameTitle(e.target.value)}
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onPointerDown={(e) => e.stopPropagation()}
+                />
+            ) : (
+                <h3 {...provided.dragHandleProps}>{list.title}</h3>
+            )}
+            <div className="list-header-actions">
+                {isRenaming ? (
+                    <>
+                        <button
+                            type="button"
+                            className="rename-list-btn"
+                            onClick={saveRename}
+                            onMouseDown={(e) => e.stopPropagation()}
+                            onPointerDown={(e) => e.stopPropagation()}
+                        >
+                            Save
+                        </button>
+                        <button
+                            type="button"
+                            className="rename-list-btn"
+                            onClick={() => {
+                                setRenameTitle(list.title || "");
+                                setIsRenaming(false);
+                            }}
+                            onMouseDown={(e) => e.stopPropagation()}
+                            onPointerDown={(e) => e.stopPropagation()}
+                        >
+                            Cancel
+                        </button>
+                    </>
+                ) : (
+                    <button
+                        type="button"
+                        className="rename-list-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setRenameTitle(list.title || "");
+                            setIsRenaming(true);
+                        }}
+                        onMouseDown={(e) => e.stopPropagation()}
+                        onPointerDown={(e) => e.stopPropagation()}
+                    >
+                        Rename
+                    </button>
+                )}
+                <button
+                    type="button"
+                    className="delete-list-btn"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onDeleteList?.(list.id);
+                    }}
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onPointerDown={(e) => e.stopPropagation()}
+                >
+                    Delete
+                </button>
+            </div>
+        </div>
+            <Droppable droppableId={String(list.id)} type="card">
+            {(provided) => (
+                <div className="list-cards" ref={provided.innerRef} {...provided.droppableProps}>
+                {cards.map((card, i) => (
+                    <Card
+                        key={`${list.id}-${card.id}-${i}`}
+                        card={card}
+                        listId={list.id}
+                        index={i}
+                        onCardUpdated={onCardUpdated}
+                    />
+                ))}
+                {provided.placeholder}
+                </div>
+            )}
+            </Droppable>
+
+            <input
+                placeholder="+ Add card"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+            <button onClick={addCard}>Add</button>
+        </div>
+        )}
+    </Draggable>
+    );
+}

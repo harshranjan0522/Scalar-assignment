@@ -1,0 +1,60 @@
+.card {
+    background: rgba(255,255,255,0.9);
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.card:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+.card.dragging {
+    transform: none !important;
+}
+
+.card.completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.card h4 {
+    margin: 6px 0;
+    font-size: 15px;
+}
+
+.desc {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* labels */
+.labels {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.label {
+    padding: 3px 8px;
+    font-size: 11px;
+    border-radius: 6px;
+    color: white;
+}
+
+/* deadline */
+.deadline {
+    margin-top: 6px;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: #e0f2fe;
+}
+
+.deadline.late {
+    background: #fee2e2;
+    color: #b91c1c;
+}
