@@ -117,22 +117,26 @@ export default function List({
 
                     {/* 🔥 CARDS */}
                     <Droppable droppableId={String(list.id)} type="card">
-                        {(provided, snapshot) => (
-                            <div className={`list-cards ${snapshot.isDraggingOver ? "drag-over" : ""}`}>
-                                {cards.map((card, i) => (
-                                    <Card
-                                        key={card.id}
-                                        card={card}
-                                        listId={list.id}
-                                        index={i}
-                                        onCardUpdated={onCardUpdated}
-                                    />
-                                ))}
+    {(provided, snapshot) => (
+        <div
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className={`list-cards ${snapshot.isDraggingOver ? "drag-over" : ""}`}
+        >
+            {cards.map((card, i) => (
+                <Card
+                    key={card.id}
+                    card={card}
+                    listId={list.id}
+                    index={i}
+                    onCardUpdated={onCardUpdated}
+                />
+            ))}
 
-                                {provided.placeholder} {/* 🔥 MUST */}
-                            </div>
-                        )}
-                    </Droppable>
+            {provided.placeholder}
+        </div>
+    )}
+</Droppable>
 
                     {/* ➕ ADD CARD */}
                     <input
