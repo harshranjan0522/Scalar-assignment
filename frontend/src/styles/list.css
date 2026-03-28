@@ -15,7 +15,17 @@
     flex-direction: column;
     gap: 10px;
     max-height: calc(100vh - 120px);
-    overflow: hidden;
+    overflow: visible;
+}
+.list-cards{
+    max-height: calc(100vh - 280px);
+    overflow-y: auto;
+    padding-right: 2px;
+
+    min-height: 50px;        /* 🔥 prevents collapse */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .list:hover {
