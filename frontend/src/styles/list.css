@@ -20,8 +20,6 @@
 
     overflow: visible;
 
-    /* 🔥 CRITICAL FIX */
-    transform: none !important;
 }
 
 
