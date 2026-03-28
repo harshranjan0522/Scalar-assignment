@@ -222,7 +222,7 @@ export default function Board({ search, filter, onFilterOptionsChange }) {
     movedCard.list_id = destList.id;
 
     // 🔥 UPDATE UI
-    setData(JSON.parse(JSON.stringify(newData)));
+    setData(newData);
 
     // 🔥 PREPARE BULK UPDATE (MOST IMPORTANT FIX)
     const updatedCards = [];

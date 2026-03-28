@@ -30,9 +30,7 @@ export default function Card({ card, listId, index, onCardUpdated }) {
                         className={`card ${isCompleted ? "completed" : ""} ${
                             snapshot.isDragging ? "dragging" : ""
                         }`}
-                        style={{
-                            ...provided.draggableProps.style,
-                        }}
+                        style={provided.draggableProps.style}
                         onClick={() => setOpen(true)}
                     >
                         <input
