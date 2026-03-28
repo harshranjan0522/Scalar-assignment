@@ -5,7 +5,9 @@ const connection = await mysql.createConnection({
     user: process.env.MYSQLUSER,
     password: process.env.MYSQLPASSWORD,
     database: process.env.MYSQLDATABASE,
-    port: process.env.MYSQLPORT
+    port: process.env.MYSQLPORT,
+    waitForConnections: true,
+    connectionLimit: 10,
 });
 
 connection.connect((err) => {
@@ -16,4 +18,4 @@ connection.connect((err) => {
     }
 });
 
-module.exports = connection;
+module.exports = pool;
