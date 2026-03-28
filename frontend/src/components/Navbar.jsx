@@ -17,7 +17,7 @@ export default function Navbar({ onSearch, onFilter, labelOptions = [], employee
     return (
         <div className="navbar">
             {/* Left Section */}
-            <h2 className="navbar-title">Assignment</h2>
+            <h2 className="navbar-title">Scalar-Assignment</h2>
 
             {/* Right Section */}
             <div className="navbar-right">

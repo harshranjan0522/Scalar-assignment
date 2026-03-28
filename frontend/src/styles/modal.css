@@ -1,134 +1,49 @@
-/* Overlay */
 .modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.4);
 
     display: flex;
     justify-content: center;
     align-items: center;
-
-    padding: 20px;
-    z-index: 1000;
-}
-/* 🔥 prevents text selection during drag */
-body {
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 .modal-content {
-    background: white;
+    background: #ffffff;
     width: 420px;
     max-width: 95%;
     max-height: 90vh;
 
-    overflow-y: auto; /* 🔥 FIXED SCROLL */
-
-    border-radius: 16px;
+    border-radius: 14px;
     padding: 20px;
+
+    border: 1px solid #e7e5e4;
 
     display: flex;
     flex-direction: column;
     gap: 12px;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* scrollbar inside modal */
-.modal-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-    background: #cbd5f5;
-    border-radius: 10px;
-}
-
-/* Headings */
+/* headings */
 .modal-content h4 {
-    margin: 8px 0 4px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    color: #374151;
+    color: #44403c;
 }
 
-/* Inputs */
+/* inputs */
 .modal-content input,
 .modal-content textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 14px;
-    outline: none;
-    transition: 0.2s ease;
+    border: 1px solid #e7e5e4;
+    background: #fafaf9;
 }
 
-/* Focus */
-.modal-content input:focus,
-.modal-content textarea:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-}
-
-/* Textarea */
-.modal-content textarea {
-    min-height: 80px;
-    resize: none;
-}
-
-/* Color picker */
-.modal-content input[type="color"] {
-    padding: 4px;
-    height: 40px;
-    cursor: pointer;
-}
-
-/* Buttons */
-.modal-content button {
-    padding: 8px 12px;
-    border-radius: 10px;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-/* Save button */
+/* buttons */
 .modal-content button:first-of-type {
-    background: #6366f1;
-    color: white;
+    background: #1c1917;
 }
 
-.modal-content button:first-of-type:hover {
-    background: #4f46e5;
-}
-
-/* Close button */
 .modal-content button:last-of-type {
-    background: #e5e7eb;
-    color: #111827;
-}
-
-.modal-content button:last-of-type:hover {
-    background: #d1d5db;
-}
-
-/* Label button */
-.modal-content button:nth-of-type(2) {
-    background: #10b981;
-    color: white;
-}
-
-.modal-content button:nth-of-type(2):hover {
-    background: #059669;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .modal-content {
-        width: 100%;
-        padding: 16px;
-    }
+    background: #e7e5e4;
+    color: #1c1917;
 }

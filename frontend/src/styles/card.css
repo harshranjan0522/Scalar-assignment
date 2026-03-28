@@ -1,42 +1,26 @@
 .card {
-    background: rgba(255,255,255,0.95);
+    background: #ffffff;
     padding: 12px;
     border-radius: 12px;
-    margin-bottom: 10px;
-    cursor: pointer;
 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 1px solid #e5e7eb;
 
-    user-select: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
 }
 
-/* 🔥 HOVER (SAFE) */
+/* hover effect */
 .card:hover {
-    transform: translateY(-2px);
-}
-.drag-over {
-    background: rgba(99,102,241,0.08);
+    background: #f9fafb;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
 
-.dragging{
-    background: wheat;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* 🔥 DRAGGING MAGIC */
+/* dragging */
 .card.dragging {
-    transform: rotate(3deg) scale(1.05);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    transform: scale(1.04);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     z-index: 999;
-    position: relative;
-    z-index: 9999;
-}
-
-/* 🔥 SMOOTH MOVE */
-.card {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card.completed {
@@ -45,39 +29,35 @@
 }
 
 .card h4 {
-    margin: 6px 0;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
 }
 
 .desc {
-    font-size: 13px;
+    font-size: 12px;
     color: #6b7280;
 }
 
 /* labels */
-.labels {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-}
-
 .label {
     padding: 3px 8px;
     font-size: 11px;
     border-radius: 6px;
-    color: white;
 }
 
 /* deadline */
 .deadline {
     margin-top: 6px;
-    font-size: 12px;
+    font-size: 11px;
     padding: 4px 8px;
     border-radius: 6px;
-    background: #e0f2fe;
+
+    background: #eef2ff;
+    color: #4338ca;
 }
 
 .deadline.late {
     background: #fee2e2;
-    color: #b91c1c;
+    color: #dc2626;
 }

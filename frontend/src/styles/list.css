@@ -1,97 +1,50 @@
 .list {
-    width: 500px;
-    min-width: 500px;
-    max-width: 500px;
-    padding: 12px;
-    min-height: 50px;
+    width: 400px;
+    min-width: 400px;
+    padding: 14px;
 
-    background: rgba(255,255,255,0.25);
+    background: #f1f5f9;
+    border-radius: 14px;
 
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: calc(100vh - 120px);
-
-    overflow: visible;
-
+    gap: 12px;
 }
 
 .drag-over {
-    background: rgba(99,102,241,0.1);
-    border-radius: 10px;
-}
-/* HEADER */
-.list-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
+    background: #f5f5f4;
 }
 
+/* HEADER */
 .list-header h3 {
-    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .list-header-actions {
     display: flex;
-    align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
-/* INPUT */
-.rename-input {
-    flex: 1;
-    min-width: 0;
-    border: none;
-    border-radius: 8px;
-    padding: 6px 8px;
-    font-size: 14px;
-}
-
-/* BUTTONS */
-.rename-list-btn,
-.delete-list-btn {
-    border: none;
-    border-radius: 8px;
-    padding: 6px 10px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-/* CARDS CONTAINER */
+/* cards container */
 .list-cards {
     min-height: 60px;
     display: flex;
     flex-direction: column;
+    padding: 6px;
     gap: 10px;
-
     overflow-y: auto;
-
-    transition: background 0.2s ease;
 }
 
-/* SCROLLBAR */
+/* hide scrollbar */
 .list-cards::-webkit-scrollbar {
     display: none;
-}
-
-.list-cards {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .list {
-        width: calc(100vw - 32px);
-        min-width: calc(100vw - 32px);
-        max-width: calc(100vw - 32px);
-    }
-
-    .list-cards {
-        max-height: calc(100vh - 300px);
-    }
 }
